@@ -19,6 +19,14 @@ Ingests one day of telemetry per customer per model run
 Data arrives pre-aggregated at the link level (dnsEntityName + circuitName + remoteDnsEntityName + remoteCircuitName)
 Sources: Versa logs (intfUtilLog, sdwanB2BSlamLog, systemLoadLog, monStatsLog, alarmLog) and Viptela objects (device-health, device-interface, device-tunnel)
 
+Scale
+Dimension                    Value
+Devices monitored            11K+
+Vendors                      Versa, Viptela
+Telemetry volume             Millions of records/day
+Hierarchy levels             5 (link → interface → device → site → network)Output DataFrames per run10 (day + week × 5 levels)
+Model cadence                Daily
+
 Metric categories and raw inputs:
 
 Bandwidth utilization: ulBwUtil, dlBwUtil — upload and download utilization percentages
@@ -63,6 +71,16 @@ Model validates all input fields and numeric types before processing — throws 
 Logs WARNING if missing values present in input data
 Logs ERROR if device weights do not sum to 1 (score calculation integrity check)
 New devices automatically incorporated — single-day scores only until 7 days of data accumulated
+
+Tech Stack
+Component                       Tool
+Language                        Python
+Data processing                 Pandas, NumPy
+Statistical transforms          Scipy
+Pipeline orchestration          Apache Airflow
+Data warehouse                  GCP BigQuery
+Reporting                       Looker Studio
+Config management               YAML
 
 Output:
 
