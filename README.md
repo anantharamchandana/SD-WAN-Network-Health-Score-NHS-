@@ -2,6 +2,7 @@
 Built a network performance scoring model for Versa and Viptela SD-WAN scores health at every level from individual links up to the full customer network.
 
 Enterprise network operations teams managing SD-WAN infrastruture across thousand of customers had no single, defensible metric to answer the question: 
+
 "How healthy is this customer's network today?"
 
 Software defined - Network Health Score (NHS)
